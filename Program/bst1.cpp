@@ -6,57 +6,33 @@ class node
 		int data;
 		node *left,*right;
 };
-void inorder(node *root)
+int height(node *root)
 {
 	if(root==NULL)
-		return;
-	inorder(root->left);
-	cout<<root->data;
-	inorder(root->right);
-}
-void preorder(node *root)
-{
-	if(root==NULL)
-		return;
-	cout<<endl<<root->data;
-	preorder(root->left);
-	preorder(root->right);
-}
-void postorder(node *root)
-{
-	if(root==NULL)
-		return;
-	postorder(root->left);
-	postorder(root->right);
-	cout<<root->data;
+		return 0;
+	return max(height(root->left),height(root->right)+1);
 }
 int main()
 {
-	int level;
 	node *root;
 	root=new node();
-	root->data=1;
+	root->data=5;
 	node *temp;
 	temp=new node();
-	temp->data=2;
+	temp->data=15;
 	root->left=temp;
 	temp=new node();
-	temp->data=4;
+	temp->data=21;
 	root->left->left=temp;
 	temp=new node();
-	temp->data=5;
-	root->left->right=temp;
-	temp=new node();
-	temp->data=3;
+	temp->data=20;
 	root->right=temp;
 	temp=new node();
-	temp->data=6;
+	temp->data=17;
 	root->right->left=temp;
 	temp=new node();
-	temp->data=7;
+	temp->data=25;
 	root->right->right=temp;
-	inorder(root);
-	preorder(root);
-	postorder(root);
+	cout<<height(root);
 }
 
